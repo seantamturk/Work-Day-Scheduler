@@ -23,5 +23,5 @@ $(function () {
 });
 
 $(document).ready(function() {
-  $('#currentDay').text('Hello, World!');
+  $('#currentDay').text(dayjs().format('dddd, MMMM D, h:mm a'));
 });

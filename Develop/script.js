@@ -1,7 +1,7 @@
 // Wrap all code that interacts with the DOM in a call to jQuery to ensure that
 // the code isn't run until the browser has finished rendering all the elements
 // in the html.
-$(function () {
+
   // TODO: Add a listener for click events on the save button. This code should
   // use the id in the containing time-block as a key to save the user input in
   // local storage. HINT: What does `this` reference in the click listener
@@ -20,7 +20,7 @@ $(function () {
   // attribute of each time-block be used to do this?
   //
   // TODO: Add code to display the current date in the header of the page.
-});
+
 
 var currentHour;
 // Adds date and time to header
@@ -28,14 +28,22 @@ $(document).ready(function () {
   setInterval(function() {
   $('#currentDay').text(dayjs().format('dddd, MMMM D, h:mm:ss a'));
   currentHour = dayjs().hour()
-  console.log(currentHour)
+  onHourUpdated(currentHour); //callback function to get currentHour outside function scope
+  // console.log(currentHour)
 }, 1000);
 });
-var timeTestVar = 20
+
+// test console log 
+console.log(currentHour)
+// Current hour color updater
 // if at least 1 element has a class name of the current hour, adds class of present
-if ($('.' + timeTestVar.toString()).length) {
-  $('.' + timeTestVar.toString()).addClass('present');
-}
+function onHourUpdated(hour){
+  // test console log 
+  console.log(currentHour)
+if ($('.' + hour.toString()).length) {
+  $('.' + hour.toString()).addClass('present');
+}}
+
 // 
 
 

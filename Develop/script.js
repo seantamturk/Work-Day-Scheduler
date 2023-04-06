@@ -42,26 +42,65 @@ function onHourUpdated(hour) {
     $('.' + hour.toString()).addClass('present');
   }
   // sets past coloring for all hours less than current
-  $('div').filter(function() {
+  $('div').filter(function () {
     return parseInt($(this).attr('class')) < hour;
   }).addClass('past');
-  
+
   // ssets future coloring for all hours > current
-  $('div').filter(function() {
+  $('div').filter(function () {
     return parseInt($(this).attr('class')) > hour;
   }).addClass('future');
 
 }
 
+// local storage code
+
+// Select all save buttons and text inputs
+const saveBtns = document.querySelectorAll('.saveBtn');
+const textInputs = document.querySelectorAll('.description');
+
+// Add click event listener to each save button
+saveBtns.forEach(function (saveBtn, index) {
+  saveBtn.addEventListener('click', function (event) {
+    event.preventDefault();
+
+    // Get the hour and description for the corresponding text input
+    const hour = this.parentElement.querySelector('.hour').textContent;
+    const description = textInputs[index].value;
+
+    // Check if description is not empty and save to local storage or remove from local storage accordingly
+    if (description !== '') {
+      localStorage.setItem(hour, description);
+    } else {
+      localStorage.removeItem(hour);
+    }
+  });
+});
+
+// Load saved descriptions from local storage when the page is loaded
+window.addEventListener('load', function () {
+  const textInputs = document.querySelectorAll('.description');
+  textInputs.forEach(function (textInput) {
+    // Get the hour for the corresponding text input and load the saved description from local storage if it exists
+    const hour = textInput.parentElement.querySelector('.hour').textContent;
+    const savedDescription = localStorage.getItem(hour);
+    if (savedDescription) {
+      textInput.value = savedDescription;
+    }
+  });
+});
 
 
 
 
 
-// start at i=0, run as long as i < Array.length, increment i++ each run of the Code
-// use a for loop to loop code until sucess
-// if i === .some() value of the array, then its true and stop code
-// if i === .some() value if the array, then rerun the code incrementing i++ to next index
+
+
+
+
+
+
+
 
 
 

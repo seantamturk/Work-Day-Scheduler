@@ -22,9 +22,37 @@ $(function () {
   // TODO: Add code to display the current date in the header of the page.
 });
 
+var currentHour;
 // Adds date and time to header
-$(document).ready(function() {
-  $('#currentDay').text(dayjs().format('dddd, MMMM D, h:mm a'));
+$(document).ready(function () {
+  setInterval(function() {
+  $('#currentDay').text(dayjs().format('dddd, MMMM D, h:mm:ss a'));
+  currentHour = dayjs().hour()
+  console.log(currentHour)
+}, 1000);
 });
+var timeTestVar = 20
+// if at least 1 element has a class name of the current hour, adds class of present
+if ($('.' + timeTestVar.toString()).length) {
+  $('.' + timeTestVar.toString()).addClass('present');
+}
+// 
+
+
+
+// $(document).ready(function () {
+//   setInterval(function() {
+//     currentHour = dayjs().format('HH');
+//   }, 1000);
+// });
+
+
+
+
+// start at i=0, run as long as i < Array.length, increment i++ each run of the Code
+// use a for loop to loop code until sucess
+// if i === .some() value of the array, then its true and stop code
+// if i === .some() value if the array, then rerun the code incrementing i++ to next index
+
 
 
